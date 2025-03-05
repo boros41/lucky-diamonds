@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Reel1 : MonoBehaviour
 {
+    public LeanTweenType easeType;
+    [SerializeField] public int spinTime = 2;
     [HideInInspector] public bool firstReelStopped;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +25,29 @@ public class Reel1 : MonoBehaviour
 
         string selectedSymbol1 = RandomNumberGenerator.SelectedSymbols[0];
         //Debug.Log($"Reel 1 symbol: {selectedSymbol1}");
+
+        LeanTween.moveY(gameObject, (float)SymbolString.SymbolPositions.DiamondTop, 1f)
+                 .setOnComplete(
+                     () =>
+                     {
+                         transform.position = new Vector3(transform.position.x, SymbolString.LOWER_BOUND, 5);
+                         
+                         int distance = GetDistanceToSymbol(SymbolString.LOWER_BOUND, SymbolString.SYMBOL_TO_POSITION[selectedSymbol1]);
+                         int time = GetFinalSpinTime(distance, 3);
+
+                         LeanTween.moveY(gameObject, SymbolString.SYMBOL_TO_POSITION[selectedSymbol1], time)
+                                  .setEase(LeanTweenType.easeOutBack)
+                                  .setOnComplete(() => firstReelStopped = true);
+                         
+                         
+                     });
+       
+
+        //LeanTween.moveY(gameObject, SymbolString.SYMBOL_TO_POSITION[selectedSymbol1], 5f).setEase(easeType);
+
+
         
+        /*
         // "spins" reel at a constant speed of 80 iterations which is a multiple of 8 as there are 8 steps between each symbol
         for (int i = 0; i < 80; i++)
         {
@@ -55,10 +79,24 @@ public class Reel1 : MonoBehaviour
             yield return new WaitForSeconds(SymbolString.TIME_BETWEEN_SPIN); // wait .01 seconds before "spinning" reel
             //yield return null;
         }
+        */
         
-        firstReelStopped = true; // reel 1 is now stopped
+        //firstReelStopped = true; // reel 1 is now stopped
         //Debug.Log("1st reel stopped!");
+        
+        yield return null;
     }
+
+    private int GetDistanceToSymbol(int startSymbolY, int targetSymbolY)
+    {
+        return Mathf.Abs(targetSymbolY - startSymbolY);
+    }
+
+    private int GetFinalSpinTime(int distanceToSymbol, int spinSpeed)
+    {
+        return distanceToSymbol / spinSpeed;
+    }
+    
     
     private void OnDestroy()
     {

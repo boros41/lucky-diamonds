@@ -730,6 +730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d13618677735254da1a6054bfb5b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easeType: 27
+  spinTime: 4
   firstReelStopped: 0
 --- !u!1 &265085649
 GameObject:
