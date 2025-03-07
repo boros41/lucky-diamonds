@@ -1,11 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpinSymbol : MonoBehaviour
 {
     public LeanTweenType easeType;
-    [SerializeField] public float spinDuration = 2;
+    private int spinDuration = 3;
     [HideInInspector] public static bool isSpinning;
+    
+    [SerializeField] private SymbolSpawner symbolSpawner;
+    
+    private float speed = 2f; // Scroll speed
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,43 +27,68 @@ public class SpinSymbol : MonoBehaviour
     private IEnumerator SpinReel1()
     {
         isSpinning = true;
+        float spinTime = 0f;
+        float maxSpinTime = spinDuration;
+        float[] stopTimes = ReelStopTimes(spinDuration);
+        
+        //string selectedSymbol1 = RandomNumberGenerator.SelectedSymbols[0];
+        
+        Debug.Log("Spinning");
 
-        string selectedSymbol1 = RandomNumberGenerator.SelectedSymbols[0];
-        
-        spinBaseAmount();
-        
+        while (spinTime < maxSpinTime)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                symbolSpawner.availableSpritePrefabs = new List<GameObject>(symbolSpawner.spritePrefabs); // repopulate List
+                for (int j = 0; j < 3; j++)
+                {
+                    if (spinTime >= stopTimes[j])
+                    {
+                        continue;
+                    }
+                    
+                    
+                    SymbolSpawner.symbolBatch1[i, j].transform.position += Vector3.down * (speed * Time.deltaTime);
+                    
+                    // If a symbol reaches the bottom threshold, replace it
+                    if (SymbolSpawner.symbolBatch1[i, j].transform.position.y <= -1.5f)
+                    {
+                        LeanTween.cancel(SymbolSpawner.symbolBatch1[i, j]); // Ensure no duplicate tweens
+                        
+                        // Destroy the old symbol
+                        Destroy(SymbolSpawner.symbolBatch1[i, j]);
+
+                        int randomSymbolIndex = Random.Range(0, symbolSpawner.availableSpritePrefabs.Count);
+
+                        // Spawn a new symbol at the top (y = 1.5)
+                        Vector3 spawnPosition = new Vector3(SymbolSpawner.symbolBatch1[i, j].transform.position.x, 1.5f, SymbolSpawner.symbolBatch1[i, j].transform.position.z);
+                        SymbolSpawner.symbolBatch1[i, j] = Instantiate(symbolSpawner.availableSpritePrefabs[randomSymbolIndex], spawnPosition, Quaternion.identity);
+                        
+                        symbolSpawner.availableSpritePrefabs.RemoveAt(randomSymbolIndex);
+
+                    }
+                }
+            }
+
+            spinTime += Time.deltaTime; // Increment the spin timer
+            Debug.Log("Time: " + spinTime);
+
+            yield return null; // Wait until the next frame
+        }
         
         
         isSpinning = false;
-        yield return null;
+        Debug.Log("Spinning Stopped");
     }
 
-    private void spinBaseAmount()
+    private float[] ReelStopTimes(int duration)
     {
-        spinBatch1();
+        return new float[] {duration / 3f, duration * 2 / 3f, duration};
     }
 
-    private void spinBatch1()
+    private void SmoothStop(int i, int j)
     {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        LeanTween.moveY(SymbolSpawner.symbolBatch1[i, j], -2, spinDuration).setEase(easeType);
-                        break;
-                    case 1:
-                        LeanTween.moveY(SymbolSpawner.symbolBatch1[i, j], -3, spinDuration).setEase(easeType);
-                        break;
-                    case 2:
-                        LeanTween.moveY(SymbolSpawner.symbolBatch1[i, j], -4, spinDuration).setEase(easeType);
-                        break;
-                }
-                
-            }
-        }
+
     }
     
     private void OnDestroy()

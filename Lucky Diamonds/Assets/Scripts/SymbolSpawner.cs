@@ -10,7 +10,7 @@ public class SymbolSpawner : MonoBehaviour
     private const int OFFSET_Y = 1;
     
     public List<GameObject> availableSpritePrefabs; // Assign the prefabs in the Inspector
-    private IReadOnlyList<GameObject> spritePrefabs;
+    [HideInInspector] public IReadOnlyList<GameObject> spritePrefabs;
     
     
     public static GameObject[,] symbolBatch1 = new GameObject[3, 3];
@@ -21,13 +21,16 @@ public class SymbolSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Debug.LogFormat("Available sprites, {0}: {1}", availableSpritePrefabs.Count(), string.Join(", ", availableSpritePrefabs));
+        
         SpawnBatch(symbolBatch1);
+        
+        //Debug.LogFormat("Available sprites, {0}: {1}", availableSpritePrefabs.Count(), string.Join(", ", availableSpritePrefabs));
     }
 
     private void SpawnBatch(GameObject[,] batch)
     {
         spritePrefabs = availableSpritePrefabs;
-        Debug.LogFormat("Read only, {0}: {1}", spritePrefabs.Count, string.Join(", ", spritePrefabs));
         
         for (int i = 0; i < 3; i++)
         {
@@ -64,8 +67,10 @@ public class SymbolSpawner : MonoBehaviour
                 
             }
         }
+        
+        availableSpritePrefabs = new List<GameObject>(spritePrefabs); // initial spawn finished, repopulate List
     }
-
+    
     // Update is called once per frame
     void Update()
     {
