@@ -10,6 +10,7 @@ public class SpinSymbol : MonoBehaviour
     private const int SPIN_DURATION = 3;
     private const float SPIN_SPEED = 2f;
     
+    private int[] symbolsSpawned = new int[3]; // Tracks how many symbols have spawned per column.
     private readonly float[] validPositions = { 1f, 0f, -1f }; // define absolute stop positions
     private float[] stopTimes; // stop times for each reel
     private bool[][] symbolStopped = new bool[3][]; // track stopped symbols individually
@@ -32,6 +33,8 @@ public class SpinSymbol : MonoBehaviour
 
     private void StartSpinning()
     {
+        symbolsSpawned = new int[3]; // Reset spawn counts for all columns
+        
         StartCoroutine("SpinReel1");
     }
 
@@ -48,12 +51,12 @@ public class SpinSymbol : MonoBehaviour
                 symbolStopped[i][j] = false;
             }
         }
-
-        //string selectedSymbol1 = RandomNumberGenerator.SelectedSymbols[0];
         
         // actually start spinning
         while (spinTime < SPIN_DURATION)
         {
+            //SymbolSpawner.selectedBatch[1, 0].transform.position += Vector3.down * (SPIN_SPEED * Time.deltaTime);
+            
             // iterate through all symbols (all rows & columns) in a single frame.
             for (int i = 0; i < 3; i++)
             {
@@ -88,23 +91,37 @@ public class SpinSymbol : MonoBehaviour
                     // if a symbol reaches the bottom threshold (y = -1.5), destroy and replace it
                     if (SymbolSpawner.symbolBatch1[i, j].transform.position.y <= -1.5f)
                     {
-                        // destroy the old symbol
+                        // destroy old symbol which will be destroyed after the frame
                         Destroy(SymbolSpawner.symbolBatch1[i, j]);
                         
-                        // randomly select symbol
-                        int randomSymbolIndex = Random.Range(0, SymbolSpawner.availableSpritePrefabs.Count);
-                        GameObject selectedSymbol = SymbolSpawner.availableSpritePrefabs[randomSymbolIndex];
+                        symbolsSpawned[j]++; // Increase spawn count for this column
+                        
+                        GameObject selectedSymbolPrefab;
+                        
+                        // If we reached the correct spawn count, spawn the selected symbol
+                        if ((j == 0 && symbolsSpawned[j] == 1)
+                            || (j == 1 && symbolsSpawned[j] == 3)
+                            || (j == 2 && symbolsSpawned[j] == 5))
+                        {
+                            selectedSymbolPrefab = SymbolSpawner.originalSymbolPrefabs.Find(prefab => prefab.name == RandomNumberGenerator.SelectedSymbols[j]);
+                        }
+                        else
+                        {
+                            // Randomly select a symbol
+                            int randomSymbolIndex = Random.Range(0, SymbolSpawner.availableSpritePrefabs.Count);
+                            selectedSymbolPrefab = SymbolSpawner.availableSpritePrefabs[randomSymbolIndex];
 
+                            // Remove the random symbol from available pool to avoid duplicates
+                            SymbolSpawner.availableSpritePrefabs.RemoveAt(randomSymbolIndex);
+                        }
+                        
                         // spawn a new random symbol at the top (y = 1.5)
                         Vector3 spawnPosition = new Vector3(SymbolSpawner.symbolBatch1[i, j].transform.position.x, 1.5f, SymbolSpawner.symbolBatch1[i, j].transform.position.z);
-                        SymbolSpawner.symbolBatch1[i, j] = Instantiate(selectedSymbol, spawnPosition, Quaternion.identity);
-                        
-                        // remove the random symbol we spawned to prevent spawning the same symbol on the same rows
-                        SymbolSpawner.availableSpritePrefabs.RemoveAt(randomSymbolIndex);
+                        SymbolSpawner.symbolBatch1[i, j] = Instantiate(selectedSymbolPrefab, spawnPosition, Quaternion.identity);
                     }
                 }
             }
-
+            
             spinTime += Time.deltaTime; 
             
             yield return null; // wait until the next frame to spin all the symbols again

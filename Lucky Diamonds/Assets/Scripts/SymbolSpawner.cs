@@ -22,7 +22,12 @@ public class SymbolSpawner : MonoBehaviour
         
         SpawnBatch(symbolBatch1);
     }
-
+    
+    /*  Instantiate random unique symbols on each row at the start of the game. Nine symbols will be visible at all times. 
+     *
+     *  Parameters:
+     *  batch - 3x3 array containing the nine initial random symbols 
+     */
     private void SpawnBatch(GameObject[,] batch)
     {
         for (int i = 0; i < 3; i++)
@@ -56,6 +61,5 @@ public class SymbolSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

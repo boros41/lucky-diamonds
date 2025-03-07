@@ -16,7 +16,7 @@ public static class SymbolString
         DiamondBottom = 7
     }
     
-    public static string[] SymbolArray = {DIAMOND, CROWN, WATERMELON, BAR, SEVEN, CHERRY, LEMON};
+    public static string[] SymbolArray = {DIAMOND, CROWN, MELON, BAR, SEVEN, CHERRY, LEMON};
 
     public static readonly Dictionary<string, int> SYMBOL_TO_POSITION = new()
     {
@@ -31,7 +31,7 @@ public static class SymbolString
 
     public const string DIAMOND = "Diamond";
     public const string CROWN = "Crown";
-    public const string WATERMELON = "Watermelon";
+    public const string MELON = "Melon";
     public const string BAR = "Bar";
     public const string SEVEN = "Seven";
     public const string CHERRY = "Cherry";

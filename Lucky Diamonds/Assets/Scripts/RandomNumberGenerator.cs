@@ -11,8 +11,8 @@ public class RandomNumberGenerator : MonoBehaviour
     private const int _TRIPLE_CROWN_MULTIPLIER = 200;
     private const int _TRIPLE_SEVEN_MULTIPLIER = 40;
     private const int _TRIPLE_BAR_MULTIPLIER = 20;
-    private const int _TRIPLE_WATERMELON_MULTIPLIER = 5;
-    private const int _DOUBLE_WATERMELON_MULTIPLIER = 4;
+    private const int _TRIPLE_MELON_MULTIPLIER = 5;
+    private const int _DOUBLE_MELON_MULTIPLIER = 4;
     private const int _TRIPLE_LEMON_MULTIPLIER = 3;
     private const int _DOUBLE_LEMON_MULTIPLIER = 2;
     private const float _TRIPLE_CHERRY_MULTIPLIER = 1.5f;
@@ -103,7 +103,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 PrizeValue = GameControl.BetAmount * _TRIPLE_BAR_MULTIPLIER;
                 break;
             }
-            // triple watermelon 1% chance
+            // triple MELON 1% chance
             case < 1000:
             {
                 // determine which slot will display the symbols, 0-2
@@ -112,16 +112,16 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
 
-                Debug.Log($"TRIPLE WATERMELON {SymbolString.WATERMELON}:{SymbolString.WATERMELON}:{SymbolString.WATERMELON}");
+                Debug.Log($"TRIPLE MELON {SymbolString.MELON}:{SymbolString.MELON}:{SymbolString.MELON}");
                 
-                SelectedSymbols[reelSymbol1] = SymbolString.WATERMELON;
-                SelectedSymbols[reelSymbol2] = SymbolString.WATERMELON;
-                SelectedSymbols[reelSymbol3] = SymbolString.WATERMELON;
+                SelectedSymbols[reelSymbol1] = SymbolString.MELON;
+                SelectedSymbols[reelSymbol2] = SymbolString.MELON;
+                SelectedSymbols[reelSymbol3] = SymbolString.MELON;
 
-                PrizeValue = GameControl.BetAmount * _TRIPLE_WATERMELON_MULTIPLIER;
+                PrizeValue = GameControl.BetAmount * _TRIPLE_MELON_MULTIPLIER;
                 break;
             }
-            // double watermelon 2% chance
+            // double MELON 2% chance
             case < 2000:
             {
                 // determine which slot will display the symbols, 0-2
@@ -131,18 +131,18 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol3 = reelSymbolArray[2];
                 
 
-                SelectedSymbols[reelSymbol1] = SymbolString.WATERMELON;
-                SelectedSymbols[reelSymbol2] = SymbolString.WATERMELON;
+                SelectedSymbols[reelSymbol1] = SymbolString.MELON;
+                SelectedSymbols[reelSymbol2] = SymbolString.MELON;
 
-                // possible random symbols (watermelon already shown so excluded)
+                // possible random symbols (MELON already shown so excluded)
                 string[] randomSymbol = {"Diamond", "Crown", "Bar", "Seven", "Cherry", "Lemon"};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
-                Debug.Log($"DOUBLE WATERMELON symbols {SymbolString.WATERMELON}:{SymbolString.WATERMELON}:{randomSymbol[randomSymbolIndex]}");
+                Debug.Log($"DOUBLE MELON symbols {SymbolString.MELON}:{SymbolString.MELON}:{randomSymbol[randomSymbolIndex]}");
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
-                PrizeValue = GameControl.BetAmount * _DOUBLE_WATERMELON_MULTIPLIER;
+                PrizeValue = GameControl.BetAmount * _DOUBLE_MELON_MULTIPLIER;
                 break;
             }
             // triple lemon 3% chance
@@ -177,7 +177,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
             
                 // possible random symbols (lemon already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "Watermelon", "Bar", "Seven", "Cherry"};
+                string[] randomSymbol = {"Diamond", "Crown", "MELON", "Bar", "Seven", "Cherry"};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE Lemon symbols: {SymbolString.LEMON}:{SymbolString.LEMON}:{randomSymbol[randomSymbolIndex]}");
@@ -219,7 +219,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.CHERRY;
 
                 // possible random symbols (cherry already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "Watermelon", "Bar", "Seven", "Lemon"};
+                string[] randomSymbol = {"Diamond", "Crown", "MELON", "Bar", "Seven", "Lemon"};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE CHERRY symbols {SymbolString.CHERRY}:{SymbolString.CHERRY}:{randomSymbol[randomSymbolIndex]}");
