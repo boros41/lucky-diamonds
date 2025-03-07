@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class GameControl : MonoBehaviour
         if (!SpinSymbol.isSpinning)
         {
             RandomNumberGenerator.CalculateSelectedSymbols();
+            
             SpinButtonPressed?.Invoke(); // invoke event if there are subscribers/listeners (not null)
         }
     }
@@ -41,11 +43,9 @@ public class GameControl : MonoBehaviour
         
         if (!SpinSymbol.isSpinning && !_resultsChecked)
         {
-            //CheckResults();
             _resultsChecked = true;
             prizeText.enabled = true;
             
-            //Debug.Log($"Setting text to prize value: {RandomNumberGenerator.PrizeValue}");
             prizeText.text = $"{RandomNumberGenerator.PrizeValue:C}";
         }
     }

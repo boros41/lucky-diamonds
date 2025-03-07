@@ -40,55 +40,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
-                
                 Debug.Log($"Triple Diamond symbols {SymbolString.DIAMOND}:{SymbolString.DIAMOND}:{SymbolString.DIAMOND}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol1] = SymbolString.DIAMOND;
                 SelectedSymbols[reelSymbol2] = SymbolString.DIAMOND;
@@ -105,56 +57,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol1 = reelSymbolArray[0];
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
-                
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
 
                 Debug.Log($"TRIPLE CROWN symbols {SymbolString.CROWN}:{SymbolString.CROWN}:{SymbolString.CROWN}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol1] = SymbolString.CROWN;
                 SelectedSymbols[reelSymbol2] = SymbolString.CROWN;
@@ -172,56 +76,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
-                
                 Debug.Log($"TRIPLE SEVEN symbols {SymbolString.SEVEN}:{SymbolString.SEVEN}:{SymbolString.SEVEN}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
-                
+
                 SelectedSymbols[reelSymbol1] = SymbolString.SEVEN;
                 SelectedSymbols[reelSymbol2] = SymbolString.SEVEN;
                 SelectedSymbols[reelSymbol3] = SymbolString.SEVEN;
@@ -238,55 +94,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
-                
                 Debug.Log($"TRIPLE BAR symbols {SymbolString.BAR}:{SymbolString.BAR}:{SymbolString.BAR}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol1] = SymbolString.BAR;
                 SelectedSymbols[reelSymbol2] = SymbolString.BAR;
@@ -303,56 +111,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol1 = reelSymbolArray[0];
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
-                
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
 
                 Debug.Log($"TRIPLE WATERMELON {SymbolString.WATERMELON}:{SymbolString.WATERMELON}:{SymbolString.WATERMELON}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol1] = SymbolString.WATERMELON;
                 SelectedSymbols[reelSymbol2] = SymbolString.WATERMELON;
@@ -370,50 +130,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
 
                 SelectedSymbols[reelSymbol1] = SymbolString.WATERMELON;
                 SelectedSymbols[reelSymbol2] = SymbolString.WATERMELON;
@@ -423,9 +139,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE WATERMELON symbols {SymbolString.WATERMELON}:{SymbolString.WATERMELON}:{randomSymbol[randomSymbolIndex]}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
@@ -435,169 +148,14 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple lemon 3% chance
             case < 3000:
             {
-                
-                /*
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-                */
-                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // Check if all reel symbol indices are the same. If so, adjust accordingly. Two could still be the equal.
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                
-                // Reel symbol indices are not the same now but two could be. Adjust if so
-                if (reelSymbol1 == reelSymbol2)
-                {
-                    // adjust reelSymbol1 and reelSymbol3 based on what reelSymbol3 is as its already in a valid index
-                    if (reelSymbol1 == 0) // Here, reelSymbol3 CANNOT be 0, only 1 or 2
-                    {
-                        if (reelSymbol3 == 1) // 0 0 1 situation
-                        {
-                            reelSymbol2 = 2; // 0 2 1 now
-                        }
-                        else // 0 0 2 situation
-                        {
-                            reelSymbol2 = 1; // 0 1 2 now
-                        }
-                    } else if (reelSymbol1 == 1) // Here, reelSymbol3 CANNOT be 1, only 0 or 2
-                    {
-                        if (reelSymbol3 == 0) // 1 1 0 situation
-                        {
-                            reelSymbol2 = 2; // 1 2 0 now
-                        }
-                        else // 1 1 2 situation
-                        {
-                            reelSymbol2 = 0; // 1 0 2 now
-                        }
-                    } else if (reelSymbol1 == 2) // Here, reelSymbol3 CANNOT be 2, only 0 or 1
-                    {
-                        if (reelSymbol3 == 0) // 2 2 0 situation
-                        {
-                            reelSymbol2 = 1; // 2 1 0 now
-                        }
-                        else // 2 2 1 situation
-                        {
-                            reelSymbol2 = 0; // 2 0 1 now
-                        }
-                    }
-                } else if (reelSymbol2 == reelSymbol3)
-                {
-                    // adjust reelSymbol2 and reelSymbol3 based on what reelSymbol1 is as its already in a valid index
-                    if (reelSymbol2 == 0) // Here, reelSymbol1 CANNOT be 0, only 1 or 2.
-                    {
-                        if (reelSymbol1 == 1) // 1 0 0 situation
-                        {
-                            reelSymbol3 = 2; // 1 0 2 now
-                        }
-                        else // 2 0 0 situation
-                        {
-                            reelSymbol3 = 1; // 2 0 1 now
-                        }
-                    } else if (reelSymbol2 == 1) // reelSymbol1 CANNOT be 1, only 0 or 2.
-                    {
-                        if (reelSymbol1 == 0) // 0 1 1 situation
-                        {
-                            reelSymbol3 = 2; // 0 1 2 now
-                        }
-                        else // 2 1 1 situation
-                        {
-                            reelSymbol3 = 0; // 2 1 0 now
-                        }
-                    } else if (reelSymbol2 == 2) // reelSymbol1 CANNOT be 2, only 0 or 1
-                    {
-                        if (reelSymbol1 == 0) // 0 2 2 situation
-                        {
-                            reelSymbol3 = 1; // 0 2 1 now
-                        }
-                        else // 1 2 2 situation
-                        {
-                            reelSymbol3 = 0; // 1 2 0 now
-                        }
-                    }
-                } else if (reelSymbol1 == reelSymbol3)
-                {
-                    // adjust reelSymbol1 and reelSymbol3 based on what reelSymbol2 is as its already in a valid index
-                    if (reelSymbol1 == 0) // Here, reelSymbol2 CANNOT be 0, only 1 or 2
-                    {
-                        if (reelSymbol2 == 1) // 0 1 0 situation
-                        {
-                            reelSymbol3 = 2; // 0 1 2 now
-                        }
-                        else // 0 2 0 situation
-                        {
-                            reelSymbol3 = 1; // 0 2 1 now
-                        }
-                    } else if (reelSymbol1 == 1) // Here, reelSymbol2 CANNOT be 1, only 0 or 2
-                    {
-                        if (reelSymbol2 == 0) // 1 0 1 situation
-                        {
-                            reelSymbol3 = 2; // 1 0 2 now
-                        }
-                        else // 1 2 1 situation
-                        {
-                            reelSymbol3 = 0; // 1 2 0 now
-                        }
-                    } else if (reelSymbol1 == 2) // Here, reelSymbol2 CANNOT be 2, only 0 or 1
-                    {
-                        if (reelSymbol2 == 0) // 2 0 2 situation
-                        {
-                            reelSymbol3 = 1; // 2 0 1 now
-                        }
-                        else // 2 1 2 situation
-                        {
-                            reelSymbol3 = 0; // 2 1 0 now
-                        }
-                    }
-                }
-                */
-                
                 Debug.Log($"TRIPLE LEMON symbols {SymbolString.LEMON}:{SymbolString.LEMON}:{SymbolString.LEMON}");
                 Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol1] = SymbolString.LEMON;
                 SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
@@ -615,172 +173,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-                
-                
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-
-                SelectedSymbols[reelSymbol1] = SymbolString.LEMON;
-                SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
-            
-                // possible random symbols (lemon already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "Watermelon", "Bar", "Seven", "Cherry"};
-                int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
-
-                Debug.Log($"DOUBLE LEMON symbols: {SymbolString.LEMON}:{SymbolString.LEMON}:{randomSymbol[randomSymbolIndex]}");
-                Debug.Log($"reelSymbol1: {reelSymbol1}");
-                Debug.Log($"reelSymbol2: {reelSymbol2}");
-                Debug.Log($"reelSymbol3: {reelSymbol3}");
-                
-                SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
-
-                PrizeValue = GameControl.BetAmount * _DOUBLE_LEMON_MULTIPLIER;
-                break;
-            }
-            // triple cherry 5% chance
-            case < 5000:
-            {
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-
-                Debug.Log($"TRIPLE CHERRY symbols {SymbolString.CHERRY}:{SymbolString.CHERRY}:{SymbolString.CHERRY}");
-                Debug.Log($"reelSymbol1: {reelSymbol1}");
-                Debug.Log($"reelSymbol2: {reelSymbol2}");
-                Debug.Log($"reelSymbol3: {reelSymbol3}");
-                
-                SelectedSymbols[reelSymbol1] = SymbolString.CHERRY;
-                SelectedSymbols[reelSymbol2] = SymbolString.CHERRY;
-                SelectedSymbols[reelSymbol3] = SymbolString.CHERRY;
-
-                PrizeValue = GameControl.BetAmount * _TRIPLE_CHERRY_MULTIPLIER;
-                break;
-            }
-            // double cherry 7% chance
-            case < 7000:
-            {
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
-
                 SelectedSymbols[reelSymbol1] = SymbolString.LEMON;
                 SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
             
@@ -789,9 +181,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE Lemon symbols: {SymbolString.LEMON}:{SymbolString.LEMON}:{randomSymbol[randomSymbolIndex]}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
@@ -808,10 +197,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol3 = reelSymbolArray[2];
                 
                 Debug.Log($"TRIPLE CHERRY symbols {SymbolString.CHERRY}:{SymbolString.CHERRY}:{SymbolString.CHERRY}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
-                
+
                 SelectedSymbols[reelSymbol1] = SymbolString.CHERRY;
                 SelectedSymbols[reelSymbol2] = SymbolString.CHERRY;
                 SelectedSymbols[reelSymbol3] = SymbolString.CHERRY;
@@ -837,9 +223,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE CHERRY symbols {SymbolString.CHERRY}:{SymbolString.CHERRY}:{randomSymbol[randomSymbolIndex]}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
@@ -858,51 +241,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 int reelSymbol2 = reelSymbolArray[1];
                 int reelSymbol3 = reelSymbolArray[2];
                 
-                /*
-                // determine which slot will display the symbols, 0-2
-                int reelSymbol1 = Random.Range(0, 3); 
-                int reelSymbol2 = Random.Range(0, 3);
-                int reelSymbol3 = Random.Range(0, 3);
-            
-                if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 0)
-                {
-                    if (Random.value < 0.5f)
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 2
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else 
-                    {
-                        reelSymbol2 += 2; // second symbol at slot 3
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 1)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 1
-                        reelSymbol3 = 2; // third random symbol at slot 3
-                    }
-                    else // 1st and third slot 
-                    {
-                        reelSymbol2 += 1; // second symbol at slot 3
-                        reelSymbol1 = 0; // third random symbol at slot 1
-                    }
-                } else if (reelSymbol1 == reelSymbol2 && reelSymbol1 == reelSymbol3 && reelSymbol1 == 2)
-                {
-                    if (Random.value < 0.5f) 
-                    {
-                        reelSymbol2 -= 2; // second symbol at slot 1
-                        reelSymbol3 = 1; // third random symbol at slot 2
-                    }
-                    else 
-                    {
-                        reelSymbol2 -= 1; // second symbol at slot 2
-                        reelSymbol3 = 0; // third random symbol at slot 1
-                    }
-                }
-                */
-                
                 int randomSymbolIndex1 = Random.Range(0, nonWinSymbolList.Count); // 0-6
                 SelectedSymbols[reelSymbol1] = nonWinSymbolList[randomSymbolIndex1];
                 
@@ -919,9 +257,6 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol3] = nonWinSymbolList[randomSymbolIndex3];
                 
                 Debug.Log($"No win symbols: {SelectedSymbols[reelSymbol1]}:{SelectedSymbols[reelSymbol2]}:{SelectedSymbols[reelSymbol3]}");
-                //Debug.Log($"reelSymbol1: {reelSymbol1}");
-                //Debug.Log($"reelSymbol2: {reelSymbol2}");
-                //Debug.Log($"reelSymbol3: {reelSymbol3}");
 
                 PrizeValue = 0;
                 break;
