@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpinSymbol : MonoBehaviour
 {
     [SerializeField] public LeanTweenType easeType;
     [HideInInspector] public static bool isSpinning;
     
-    private const int SPIN_DURATION = 3;
-    private const float SPIN_SPEED = 2f;
+    private const int SPIN_DURATION = 3; // default 
+    private const int SPIN_SPEED = 7;
     
-    private int[] symbolsSpawned = new int[3]; // Tracks how many symbols have spawned per column.
+    private int[] symbolSpawnCount = new int[3]; // how many symbols have spawned for a column/reel
+    private int[] selectedSpawnNumber = new int[3]; // spawn count number indicating when to spawn the selected symbols for each column/reel
     private readonly float[] validPositions = { 1f, 0f, -1f }; // define absolute stop positions
-    private float[] stopTimes; // stop times for each reel
+    private int[] reelStopTimes;
     private bool[][] symbolStopped = new bool[3][]; // track stopped symbols individually
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,19 +24,25 @@ public class SpinSymbol : MonoBehaviour
         isSpinning = false; // reel 1 not spinning yet
         
         GameControl.SpinButtonPressed += StartSpinning; // subscribe to event
+
+        
         
         for (int index = 0; index < 3; index++)
         {
             symbolStopped[index] = new bool[3];
         }
         
-        stopTimes = ReelStopTimes(SPIN_DURATION);
+        reelStopTimes = ReelStopTimes(SPIN_DURATION);
         
+        for (int i = 0; i < 3; i++)
+        {
+            selectedSpawnNumber[i] = (SPIN_SPEED * reelStopTimes[i]) - 1;
+        }
     }
 
     private void StartSpinning()
     {
-        symbolsSpawned = new int[3]; // Reset spawn counts for all columns
+        symbolSpawnCount = new int[3]; // Reset spawn counts for all columns
         
         StartCoroutine("SpinReel1");
     }
@@ -75,7 +84,7 @@ public class SpinSymbol : MonoBehaviour
                      *  Without !symbolStopped[i][j], the tween would be applied again every frame. I.e., If spinTime is still >= stopTimes[j] - 0.01,
                      *  the stopping condition is still true, but we already applied the tween in the previous frame. 
                      */
-                    if (spinTime >= stopTimes[j] - 0.01 && !symbolStopped[i][j])
+                    if (spinTime >= reelStopTimes[j] - 0.01 && !symbolStopped[i][j])
                     {
                         symbolStopped[i][j] = true; // symbol is now stopped
                         ApplyBounceEffect(SymbolSpawner.symbolBatch1[i, j]); // apply tween for the symbol
@@ -88,20 +97,32 @@ public class SpinSymbol : MonoBehaviour
                         SymbolSpawner.symbolBatch1[i, j].transform.position += Vector3.down * (SPIN_SPEED * Time.deltaTime);
                     }
                     
-                    // if a symbol reaches the bottom threshold (y = -1.5), destroy and replace it
+                    // if a symbol reaches the bottom threshold (y = -1.5), destroy and replace it. 
+                    // this is the minimum threshold for a symbol to be out of frame and where the two symbols above are only visible
                     if (SymbolSpawner.symbolBatch1[i, j].transform.position.y <= -1.5f)
                     {
                         // destroy old symbol which will be destroyed after the frame
                         Destroy(SymbolSpawner.symbolBatch1[i, j]);
                         
-                        symbolsSpawned[j]++; // Increase spawn count for this column
+                        symbolSpawnCount[j]++; // Increase spawn count for this column
                         
                         GameObject selectedSymbolPrefab;
                         
-                        // If we reached the correct spawn count, spawn the selected symbol
-                        if ((j == 0 && symbolsSpawned[j] == 1)
-                            || (j == 1 && symbolsSpawned[j] == 3)
-                            || (j == 2 && symbolsSpawned[j] == 5))
+                        /*  Selected symbol of a reel/column will normally be at y = 0 + (spinSpeed * reelStopTime).
+                         *  For example, a spin speed of 2 with a reel stop time of 1 means our symbols travel a distance of 2
+                         *  which when added to y-pos of the middle row (selected symbol row) of 0, gives y = 2.
+                         * 
+                         *  Since we are removing symbols at y = -1.5f and replacing them at y = 1.5 this means our selected symbol that
+                         *  would normally be at y = 2 has moved down to y = 1.5 at this moment. This will be the 1st symbol that is
+                         *  spawned at this y-pos for this reel/column.
+                         *
+                         *  This means our selected symbols will spawn at spawnCount = (spinSpeed * reelStopTime) - 1; y = (2 * 1) - 1 = 1.
+                         *
+                         *  Note that reelStopTime is given by the ReelStopTimes method.
+                         */
+                        if ((j == 0 && symbolSpawnCount[j] == 6)
+                            || (j == 1 && symbolSpawnCount[j] == 13)
+                            || (j == 2 && symbolSpawnCount[j] == 20))
                         {
                             selectedSymbolPrefab = SymbolSpawner.originalSymbolPrefabs.Find(prefab => prefab.name == RandomNumberGenerator.SelectedSymbols[j]);
                         }
@@ -140,15 +161,23 @@ public class SpinSymbol : MonoBehaviour
      *  n = Total number of reels
      *  duration = Total spin duration
      *
+     *  Normal mode: 3 seconds
+     *  Turbo mode: 1 second
+     *
      *  Parameters:
-     *  duration - total spin duration
+     *  duration - Total spin duration. Should be a multiple of 3 since three total reels which evenly divides to calculate ints for reelStopTimes[].
      *
      *  Returns:
      *  3-length float array where each index contains the stopping time for its respective reel
      */
-    private float[] ReelStopTimes(int duration)
+    private int[] ReelStopTimes(int duration)
     {
-        return new[] {duration / 3f, duration * 2 / 3f, duration};
+        if (duration != 3)
+        {
+            throw new ArgumentException($"Total spin duration must be 3 for normal mode, not \"{duration}\".", nameof(duration));
+        }
+        
+        return new[] {duration / 3, duration * 2 / 3, duration};
     }
 
     /*  Applies an overshot bouncing tween effect on a symbol GameObject. Called when a column stops spinning. 

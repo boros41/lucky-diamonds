@@ -20,15 +20,19 @@ public class RandomNumberGenerator : MonoBehaviour
 
     public static float PrizeValue; 
     
+    /*  ADD DOCUMENTATION
+     * 
+     */
     public static void CalculateSelectedSymbols()
     {
         //Debug.Log($"Prize value before switch: {PrizeValue}");
         
-        const int BOUND = 100_000;
-        //const int PRECISION = 1000; // percent chance up to thousandths place
+        const int BOUND = 100_000; // normally percents are out of 100 but since we have %'s to the hundredths place we are out of 100,000
+        //const int PRECISION = 1000; // percent chance up to thousandths place so we multiply 
 
         int randomNumber = Random.Range(0, BOUND); // 0-99,999
         
+        // maybe change to if statements since we are working with ranges
         switch (randomNumber)
         {
             // triple diamond .025% chance
@@ -266,6 +270,9 @@ public class RandomNumberGenerator : MonoBehaviour
         //Debug.Log($"Prize value after switch: {PrizeValue}");
     }
 
+    /*  ADD DOCUMENTATION
+     * 
+     */
     private static int[] AdjustSymbolsIfEqual(int reelSymbol1, int reelSymbol2, int reelSymbol3)
     {
         // Check if all reel symbol indices are the same. If so, adjust accordingly. Two could still be the equal.
