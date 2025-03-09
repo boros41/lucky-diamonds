@@ -14,7 +14,7 @@ One-line casino insipired slot machine where triple diamonds is MAXWIN!
 [Imgur](https://imgur.com/PoltZ6O)
 
 
-## Bult With
+## Built With
 
 - Unity
 - C#
