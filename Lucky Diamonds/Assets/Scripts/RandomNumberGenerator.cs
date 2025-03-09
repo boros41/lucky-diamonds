@@ -166,7 +166,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.MELON;
 
                 // possible random symbols (MELON already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "Bar", "Seven", "Cherry", "Lemon"};
+                string[] randomSymbol = {SymbolString.DIAMOND, SymbolString.CROWN, SymbolString.BAR, SymbolString.SEVEN, SymbolString.CHERRY, SymbolString.LEMON};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE MELON symbols {SymbolString.MELON}:{SymbolString.MELON}:{randomSymbol[randomSymbolIndex]}");
@@ -216,7 +216,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
             
                 // possible random symbols (lemon already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "MELON", "Bar", "Seven", "Cherry"};
+                string[] randomSymbol = {SymbolString.DIAMOND, SymbolString.CROWN, SymbolString.MELON, SymbolString.BAR, SymbolString.SEVEN, SymbolString.CHERRY};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE Lemon symbols: {SymbolString.LEMON}:{SymbolString.LEMON}:{randomSymbol[randomSymbolIndex]}");
@@ -265,7 +265,7 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.CHERRY;
 
                 // possible random symbols (cherry already shown so excluded)
-                string[] randomSymbol = {"Diamond", "Crown", "MELON", "Bar", "Seven", "Lemon"};
+                string[] randomSymbol = {SymbolString.DIAMOND, SymbolString.CROWN, SymbolString.MELON, SymbolString.BAR, SymbolString.SEVEN, SymbolString.LEMON};
                 int randomSymbolIndex = Random.Range(0, randomSymbol.Length);
 
                 Debug.Log($"DOUBLE CHERRY symbols {SymbolString.CHERRY}:{SymbolString.CHERRY}:{randomSymbol[randomSymbolIndex]}");

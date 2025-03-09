@@ -144,21 +144,17 @@ public class SpinSymbol : MonoBehaviour
                         {
                             selectedSymbolPrefab = SymbolSpawner.originalSymbolPrefabs.Find(prefab => prefab.name == RandomNumberGenerator.SelectedSymbols[j]);
 
-                            switch (j)
+                            if (selectedSymbolPrefab != null)
                             {
-                                case 0:
-                                    Debug.Log(selectedSymbolPrefab.name);
-                                    symbolSelected[0] = selectedSymbolPrefab.name;
-                                    break;
-                                case 1:
-                                    Debug.Log(selectedSymbolPrefab.name);
-                                    symbolSelected[1] = selectedSymbolPrefab.name;
-                                    break;
-                                case 2:
-                                    Debug.Log(selectedSymbolPrefab.name);
-                                    symbolSelected[2] = selectedSymbolPrefab.name;
-                                    break;
+                                Debug.Log($"Selected Symbol: {selectedSymbolPrefab.name}");
+                                symbolSelected[j] = selectedSymbolPrefab.name;
+
                             }
+                            else
+                            {
+                                Debug.LogWarning($"Null selectedSymbolPrefab: {selectedSymbolPrefab}");
+                            }
+                            
                         }
                         else
                         {
