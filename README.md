@@ -29,7 +29,7 @@ Watermelon, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/cont
 Bar, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/content/slot-machine-resource-pack)\
 Seven, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/content/slot-machine-resource-pack)\
 Cherry, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/content/slot-machine-resource-pack)\
-Lemon, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/content/slot-machine-resource-pack)\
+Lemon, CC-BY 3.0: [Molly "Cougarmint" Willits](https://opengameart.org/content/slot-machine-resource-pack)
 
 **Sounds**\
 Background music, CC-BY-SA 3.0: [first-step-in-the-big-city](https://opengameart.org/content/first-step-in-the-big-city)\
