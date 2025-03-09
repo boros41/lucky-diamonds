@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,6 +39,15 @@ public class InputManager : MonoBehaviour
     
     public void OnSpinClick()
     {
+        if (GameObject.Find("SpinButton") != null)
+        {
+            GameObject.Find("SpinButton").GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            Debug.LogWarning("SpinButton GameObject not found");
+        }
+        
         if (SpinSymbol.isSpinning)
         {
             return; // cannot spin while already spinning
@@ -60,28 +70,36 @@ public class InputManager : MonoBehaviour
 
     public void OnBetClick()
     {
-        if (!SpinSymbol.isSpinning)
+        if (GameObject.Find("BetButton") != null)
         {
-            switch (UIManager.Instance.PlayAmount)
-            {
-                case 1:
-                    UIManager.Instance.PlayAmount = 5;
-                    break;
-                case 5:
-                    UIManager.Instance.PlayAmount = 10;
-                    break;
-                case 10:
-                    UIManager.Instance.PlayAmount = 100;
-                    break;
-                case 100:
-                    UIManager.Instance.PlayAmount = 1000;
-                    break;
-                case 1000:
-                    UIManager.Instance.PlayAmount = 1;
-                    break;
-            }
-            
-            UIManager.Instance.DisplayPlayAmount(UIManager.Instance.PlayAmount);
+            GameObject.Find("BetButton").GetComponent<AudioSource>().Play();
         }
+        else
+        {
+            Debug.LogWarning("BetButton GameObject not found");
+        }
+
+        if (SpinSymbol.isSpinning) return; // cannot spin while spinning
+        
+        switch (UIManager.Instance.PlayAmount)
+        {
+            case 1:
+                UIManager.Instance.PlayAmount = 5;
+                break;
+            case 5:
+                UIManager.Instance.PlayAmount = 10;
+                break;
+            case 10:
+                UIManager.Instance.PlayAmount = 100;
+                break;
+            case 100:
+                UIManager.Instance.PlayAmount = 1000;
+                break;
+            case 1000:
+                UIManager.Instance.PlayAmount = 1;
+                break;
+        }
+            
+        UIManager.Instance.DisplayPlayAmount(UIManager.Instance.PlayAmount);
     }
 }

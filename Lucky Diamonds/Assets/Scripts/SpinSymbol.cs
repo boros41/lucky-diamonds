@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,9 @@ public class SpinSymbol : MonoBehaviour
     private readonly float[] validPositions = { 1f, 0f, -1f }; // define absolute stop positions
     private int[] reelStopTimes;
     private bool[][] symbolStopped = new bool[3][]; // track stopped symbols individually
+    
+    // holds the selected symbols we spawned at respective slot to compare with RNG.selectedSymbols for 
+    private string[] symbolSelected = new string[3]; 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -88,7 +92,20 @@ public class SpinSymbol : MonoBehaviour
                     if (spinTime >= reelStopTimes[j] - 0.01 && !symbolStopped[i][j])
                     {
                         symbolStopped[i][j] = true; // symbol is now stopped
+                        
                         ApplyBounceEffect(SymbolSpawner.symbolBatch1[i, j]); // apply tween for the symbol
+                        
+                        
+                        //GameObject.Find("Machine").GetComponent<AudioSource>().Play();
+                        
+                        // play sfx only if the selected symbol that was spawned came from a winning RNG set
+                        // won't play if symbolSet is "None" since that was set in the default case which meant no winning symbols
+                        if (GameObject.Find("Machine") != null 
+                            && RandomNumberGenerator.symbolSet == symbolSelected[j])
+                        {
+                            GameObject.Find("Machine").GetComponent<AudioSource>().Play();
+                        }
+                        
                         continue; // this column is now stopped, continue to the next column's iteration
                     }
                     
@@ -126,6 +143,22 @@ public class SpinSymbol : MonoBehaviour
                             || (j == 2 && symbolSpawnCount[j] == 20))
                         {
                             selectedSymbolPrefab = SymbolSpawner.originalSymbolPrefabs.Find(prefab => prefab.name == RandomNumberGenerator.SelectedSymbols[j]);
+
+                            switch (j)
+                            {
+                                case 0:
+                                    Debug.Log(selectedSymbolPrefab.name);
+                                    symbolSelected[0] = selectedSymbolPrefab.name;
+                                    break;
+                                case 1:
+                                    Debug.Log(selectedSymbolPrefab.name);
+                                    symbolSelected[1] = selectedSymbolPrefab.name;
+                                    break;
+                                case 2:
+                                    Debug.Log(selectedSymbolPrefab.name);
+                                    symbolSelected[2] = selectedSymbolPrefab.name;
+                                    break;
+                            }
                         }
                         else
                         {
@@ -150,6 +183,12 @@ public class SpinSymbol : MonoBehaviour
         }
         
         isSpinning = false; // all symbols are done spinning
+
+        if (RandomNumberGenerator.isWin && GameObject.Find("ResultManager") != null)
+        {
+            GameObject.Find("ResultManager").GetComponent<AudioSource>().Play();
+        }
+        
         yield return null;
     }
 

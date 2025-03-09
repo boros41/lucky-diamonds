@@ -45,7 +45,6 @@ public class GameControl : MonoBehaviour
         {
             //Debug.Log("Entered results check. Setting _resultsChecked = true.");
             _resultsChecked = true;
-            Debug.Log($"After setting - isSpinning: {SpinSymbol.isSpinning}, _resultsChecked: {_resultsChecked}");
             
             UIManager.Instance.WinText.enabled = true;
 

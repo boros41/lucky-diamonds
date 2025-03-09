@@ -54,9 +54,7 @@ public class UIManager : MonoBehaviour
 
     public void AddBalance(float amount)
     {
-        Debug.Log($"Old balance: {Balance}");
         Balance += amount;
-        Debug.Log($"New balance: {Balance}");
         balanceText.text = $"{Balance:C}";
     }
     

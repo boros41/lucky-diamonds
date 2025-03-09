@@ -7,7 +7,10 @@ using UnityEngine.UIElements;
 public class RandomNumberGenerator : MonoBehaviour
 {
     public static string[] SelectedSymbols = new string[3]; // contains symbols at respective slot
-    
+
+    public static bool isWin; // determines if we play a win sound effect
+    public static string symbolSet; // the symbol's name depending on where it came from the RNG; e.g., double cherry will be cherry
+        
     private const int _TRIPLE_DIAMOND_MULTIPLIER = 1000;
     private const int _TRIPLE_CROWN_MULTIPLIER = 200;
     private const int _TRIPLE_SEVEN_MULTIPLIER = 40;
@@ -39,6 +42,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple diamond .025% chance
             case < 25:
             {
+                isWin = true;
+                symbolSet = SymbolString.DIAMOND;
+
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -58,6 +64,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple crown .05% chance
             case < 50:
             {
+                isWin = true;
+                symbolSet = SymbolString.CROWN;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -77,6 +86,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple seven .25% chance
             case < 250:
             {
+                isWin = true;
+                symbolSet = SymbolString.SEVEN;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -96,6 +108,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple bar .28% chance
             case < 280:
             {
+                isWin = true;
+                symbolSet = SymbolString.BAR;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -115,6 +130,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple MELON 1% chance
             case < 1000:
             {
+                isWin = true;
+                symbolSet = SymbolString.MELON;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -134,6 +152,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // double MELON 2% chance
             case < 2000:
             {
+                isWin = true;
+                symbolSet = SymbolString.MELON;
+
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -159,6 +180,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple lemon 3% chance
             case < 3000:
             {
+                isWin = true;
+                symbolSet = SymbolString.LEMON;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -179,6 +203,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // double lemon 4% chance
             case < 4000:
             {
+                isWin = true;
+                symbolSet = SymbolString.LEMON;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -203,6 +230,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // triple cherry 5% chance
             case < 5000:
             {
+                isWin = true;
+                symbolSet = SymbolString.CHERRY;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -222,6 +252,9 @@ public class RandomNumberGenerator : MonoBehaviour
             // double cherry 7% chance
             case < 7000:
             {
+                isWin = true;
+                symbolSet = SymbolString.CHERRY;
+                
                 // determine which slot will display the symbols, 0-2
                 int[] reelSymbolArray = AdjustSymbolsIfEqual(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
                 int reelSymbol1 = reelSymbolArray[0];
@@ -245,6 +278,9 @@ public class RandomNumberGenerator : MonoBehaviour
             }
             default: // no winning symbols, generate random symbols that are not a winning match
             {
+                isWin = false;
+                symbolSet = "None";
+                
                 // starts at capacity 7 because the constructor count is 7
                 List<string> nonWinSymbolList = new List<string>(SymbolString.SymbolArray);
                 
