@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,7 +24,7 @@ public class SpinSymbol : MonoBehaviour
     {
         isSpinning = false; // reel 1 not spinning yet
         
-        GameControl.SpinButtonPressed += StartSpinning; // subscribe to event
+        InputManager.SpinButtonPressed += StartSpinning; // subscribe to event
 
         
         
@@ -149,6 +150,7 @@ public class SpinSymbol : MonoBehaviour
         }
         
         isSpinning = false; // all symbols are done spinning
+        yield return null;
     }
 
     /*  Calculates the equal time intervals of a specified duration in seconds which will be the time each reel stops at.
@@ -239,7 +241,7 @@ public class SpinSymbol : MonoBehaviour
     
     private void OnDestroy()
     {
-        GameControl.SpinButtonPressed -= StartSpinning;
+        InputManager.SpinButtonPressed -= StartSpinning;
     }
     
     // Update is called once per frame

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class RandomNumberGenerator : MonoBehaviour
 {
     public static string[] SelectedSymbols = new string[3]; // contains symbols at respective slot
-
+    
     private const int _TRIPLE_DIAMOND_MULTIPLIER = 1000;
     private const int _TRIPLE_CROWN_MULTIPLIER = 200;
     private const int _TRIPLE_SEVEN_MULTIPLIER = 40;
@@ -18,7 +19,7 @@ public class RandomNumberGenerator : MonoBehaviour
     private const float _TRIPLE_CHERRY_MULTIPLIER = 1.5f;
     private const int _DOUBLE_CHERRY_MULTIPLIER = 1;
 
-    public static float PrizeValue; 
+    public static float PrizeValue;
     
     /*  ADD DOCUMENTATION
      * 
@@ -32,7 +33,7 @@ public class RandomNumberGenerator : MonoBehaviour
 
         int randomNumber = Random.Range(0, BOUND); // 0-99,999
         
-        // maybe change to if statements since we are working with ranges
+        // TO-DO: maybe change to if statements since we are working with ranges
         switch (randomNumber)
         {
             // triple diamond .025% chance
@@ -50,7 +51,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.DIAMOND;
                 SelectedSymbols[reelSymbol3] = SymbolString.DIAMOND;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_DIAMOND_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_DIAMOND_MULTIPLIER;
+
                 break;
             }
             // triple crown .05% chance
@@ -68,7 +70,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.CROWN;
                 SelectedSymbols[reelSymbol3] = SymbolString.CROWN;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_CROWN_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_CROWN_MULTIPLIER;
+
                 break;
             }
             // triple seven .25% chance
@@ -86,7 +89,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.SEVEN;
                 SelectedSymbols[reelSymbol3] = SymbolString.SEVEN;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_SEVEN_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_SEVEN_MULTIPLIER;
+
                 break;
             }
             // triple bar .28% chance
@@ -104,7 +108,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.BAR;
                 SelectedSymbols[reelSymbol3] = SymbolString.BAR;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_BAR_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_BAR_MULTIPLIER;
+
                 break;
             }
             // triple MELON 1% chance
@@ -122,7 +127,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.MELON;
                 SelectedSymbols[reelSymbol3] = SymbolString.MELON;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_MELON_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_MELON_MULTIPLIER;
+
                 break;
             }
             // double MELON 2% chance
@@ -146,7 +152,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
-                PrizeValue = GameControl.PlayAmount * _DOUBLE_MELON_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _DOUBLE_MELON_MULTIPLIER;
+
                 break;
             }
             // triple lemon 3% chance
@@ -165,7 +172,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.LEMON;
                 SelectedSymbols[reelSymbol3] = SymbolString.LEMON;
 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_LEMON_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_LEMON_MULTIPLIER;
+
                 break;
             }
             // double lemon 4% chance
@@ -188,7 +196,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
-                PrizeValue = GameControl.PlayAmount * _DOUBLE_LEMON_MULTIPLIER;
+                PrizeValue = UIManager.Instance.PlayAmount * _DOUBLE_LEMON_MULTIPLIER;
+
                 break;
             }
             // triple cherry 5% chance
@@ -206,8 +215,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 SelectedSymbols[reelSymbol2] = SymbolString.CHERRY;
                 SelectedSymbols[reelSymbol3] = SymbolString.CHERRY;
                 
-                PrizeValue = GameControl.PlayAmount * _TRIPLE_CHERRY_MULTIPLIER;
-                
+                PrizeValue = UIManager.Instance.PlayAmount * _TRIPLE_CHERRY_MULTIPLIER;
+
                 break;
             }
             // double cherry 7% chance
@@ -230,8 +239,8 @@ public class RandomNumberGenerator : MonoBehaviour
                 
                 SelectedSymbols[reelSymbol3] = randomSymbol[randomSymbolIndex];
 
-                PrizeValue = GameControl.PlayAmount * _DOUBLE_CHERRY_MULTIPLIER;
-                
+                PrizeValue = UIManager.Instance.PlayAmount * _DOUBLE_CHERRY_MULTIPLIER;
+
                 break;
             }
             default: // no winning symbols, generate random symbols that are not a winning match
@@ -263,10 +272,10 @@ public class RandomNumberGenerator : MonoBehaviour
                 Debug.Log($"No win symbols: {SelectedSymbols[reelSymbol1]}:{SelectedSymbols[reelSymbol2]}:{SelectedSymbols[reelSymbol3]}");
 
                 PrizeValue = 0;
+
                 break;
             }
         }
-        
         //Debug.Log($"Prize value after switch: {PrizeValue}");
     }
 

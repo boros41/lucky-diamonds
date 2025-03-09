@@ -5,50 +5,19 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    public static event Action SpinButtonPressed;
-    public static event Action BetButtonPressed;
+    public static GameControl Instance { get; private set; }
     
-    [SerializeField] private TextMeshProUGUI winText;
-    [SerializeField] private TextMeshProUGUI playAmountText;
-    
-    public static float PlayAmount = 1f; // float in case I add quarter play size
-    //public static float PrizeValue;
-    private bool _resultsChecked = false;
-    
-    public void OnSpinClick()
-    {
-        if (!SpinSymbol.isSpinning)
-        {
-            RandomNumberGenerator.CalculateSelectedSymbols();
-            
-            SpinButtonPressed?.Invoke(); // invoke event if there are subscribers/listeners (not null)
-        }
-    }
+    private bool _resultsChecked;
 
-    public void OnBetClick()
+    void Awake()
     {
-        if (!SpinSymbol.isSpinning)
+        if (Instance == null)
         {
-            switch (PlayAmount)
-            {
-                case 1:
-                    PlayAmount = 5;
-                    break;
-                case 5:
-                    PlayAmount = 10;
-                    break;
-                case 10:
-                    PlayAmount = 100;
-                    break;
-                case 100:
-                    PlayAmount = 1000;
-                    break;
-                case 1000:
-                    PlayAmount = 1;
-                    break;
-            }
-            
-            playAmountText.text = $"{PlayAmount:C}";
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     
@@ -57,25 +26,34 @@ public class GameControl : MonoBehaviour
     {
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         // if rows are still spinning
         if (SpinSymbol.isSpinning)
         {
+            //Debug.Log("Spinning");
             //Debug.Log($"Reels still spinning, setting prize value to 0: 0");
             //RandomNumberGenerator.PrizeValue = 0;
-            winText.enabled = false;
+            UIManager.Instance.WinText.enabled = false;
             _resultsChecked = false;
         }
         
+        //Debug.Log($"Before check - isSpinning: {SpinSymbol.isSpinning}, _resultsChecked: {_resultsChecked}");
         if (!SpinSymbol.isSpinning && !_resultsChecked)
         {
+            //Debug.Log("Entered results check. Setting _resultsChecked = true.");
             _resultsChecked = true;
-            winText.enabled = true;
+            Debug.Log($"After setting - isSpinning: {SpinSymbol.isSpinning}, _resultsChecked: {_resultsChecked}");
             
-            winText.text = $"{RandomNumberGenerator.PrizeValue:C}";
+            UIManager.Instance.WinText.enabled = true;
+
+            UIManager.Instance.DisplayWin(RandomNumberGenerator.PrizeValue);
+            UIManager.Instance.AddBalance(RandomNumberGenerator.PrizeValue);
+            
+            
         }
     }
+    
 }
