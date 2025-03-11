@@ -1,7 +1,7 @@
 
 # Lucky Diamonds
 
-One-line casino insipired slot machine where triple diamonds is MAXWIN! 
+One-line casino inspired slot machine where triple diamonds is MAXWIN! 
 
 
 ## Demo
