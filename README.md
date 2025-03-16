@@ -19,6 +19,7 @@ Many features yet to come and will implement them when I am less busy with schoo
 
 - Unity
 - C#
+- [LeanTween](https://assetstore.unity.com/packages/tools/animation/leantween-3595)
 - Passion
 
 
