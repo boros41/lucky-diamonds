@@ -1,20 +1,23 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
     public static event Action SpinButtonPressed;
     //public static event Action BetButtonPressed; // TO-DO: invoke for bet script subscriber to increase play amount
-    
-    public static InputManager Instance { get; private set; }
 
+    private static InputManager instance { get; set; }
+    private AudioSource _musicAudioSource;
+    private readonly GameObject[] _volumeSliderGroup = new GameObject[3];
+    private bool _isMuted;
+    
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -25,15 +28,27 @@ public class InputManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+
+        _volumeSliderGroup[0] = GameObject.Find("VolumeSliderBackground");
+        _volumeSliderGroup[1] = GameObject.Find("VolumeSliderBackground/VolumeSliderIcon");
+        _volumeSliderGroup[2] = GameObject.Find("VolumeSliderBackground/VolumeSlider");
+
+        HideVolumeSlider();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // restart game
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.M))
+        {
+            ToggleMute();
         }
     }
     
@@ -102,4 +117,52 @@ public class InputManager : MonoBehaviour
             
         UIManager.Instance.DisplayPlayAmount(UIManager.Instance.PlayAmount);
     }
+
+    public void OnVolumeButtonClicked()
+    {
+        if (_volumeSliderGroup[0].activeSelf)
+        {
+            HideVolumeSlider();
+        }
+        else
+        {
+            ShowVolumeSlider();
+        }
+    }
+    
+    private void ToggleMute()
+    {
+        if (_isMuted)
+        {
+            _musicAudioSource.mute = false;
+            _isMuted = false;
+        }
+        else
+        {
+            _musicAudioSource.mute = true;
+            _isMuted = true;
+        }
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = _volumeSliderGroup[2].GetComponent<Slider>().value; // change volume of entire game
+    }
+    
+    private void ShowVolumeSlider()
+    {
+        foreach (GameObject currentVolumeElement in _volumeSliderGroup)
+        {
+            currentVolumeElement.SetActive(true);
+        }
+    }
+
+    private void HideVolumeSlider()
+    {
+        foreach (GameObject currentVolumeElement in _volumeSliderGroup)
+        {
+            currentVolumeElement.SetActive(false);
+        }
+    }
+    
 }
